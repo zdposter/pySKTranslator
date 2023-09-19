@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pySKTranslator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <script>
+        function eraseText() {
+            document.getElementById("input").value = "";
+        }
+
+        function copy_data(containerid) {
+            var range = document.createRange();
+            range.selectNode(containerid); //changed here
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();
+        }
+    </script>
+</head>
+
+<body>
+    <div style="margin-top: 50px;" class="ui container">
+        <h1 class="ui left aligned header">Preklad EN<i class='fas fa-arrow-right' style="color:red"></i>SK</h1>
+
+        <form class="ui form" action="/translate" method="POST">
+            <div class="field">
+                <div class="segment">
+                    <label>Anglický text</label>
+                    <button class="ui icon button" onclick="javascript:eraseText();">
+                        <i class="eraser icon" title="Vyčistiť"></i>
+                    </button>
+                </div>
+                <br/>
+                <div class="segment">
+                    <textarea id="input" name="eng_text" placeholder="Text na preklad…" rows="4">{{eng_text}}</textarea>
+                </div>
+                <br>
+            </div>
+
+            <button class="ui blue button" type="submit">Preložiť</button>
+        </form>
+
+        {% if result %}
+        <div class="ui divider"></div>
+        <div class="field">
+            <label>Slovenský preklad</label>
+            <button class="ui icon button" onclick="copy_data(output);">
+                <i class="copy icon" aria-hidden="true" title="Vyčistiť"></i>
+            </button>
+            <div class="ui segment">
+                <div id="output" class="col-xs-3 bs-wizard-step active">
+                    {{ result }}
+                </div>
+            </div>
+
+            {% endif %}
+
+            {% if warning %}
+            <div class="ui warning message">{{warning}}</div>
+            {% endif %}
+        </div>
+</body>
+
+</html>
