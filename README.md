@@ -25,3 +25,5 @@ python app.py
 ```
 
 a v prehliadači: http://127.0.0.1:8888
+
+![pySKTranslator](Images/screenshots/pySKTranslator.png)
