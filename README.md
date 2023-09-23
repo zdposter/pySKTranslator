@@ -1,5 +1,9 @@
 # pySKTranslator
 
+FastAPI rozhranie k prekladovému [EN-SK](https://huggingface.co/Helsinki-NLP/opus-mt-en-sk) modulu [Opus-MT](https://github.com/Helsinki-NLP/Opus-MT) 
+od [Language Technology Research Group na Univerzite Helsinkách](https://blogs.helsinki.fi/language-technology/) ([HuggingFace](https://huggingface.co/Helsinki-NLP))
+
+
 ## Inštalácia
 
 ```
@@ -25,5 +29,3 @@ python app.py
 ```
 
 a v prehliadači: http://127.0.0.1:8888
-
-![pySKTranslator](Images/screenshots/pySKTranslator.png)
