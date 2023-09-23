@@ -16,12 +16,16 @@ class Model:
         pass
 
     def load_model(self):
-        """Load model"""
+        """
+        Load model
+        """
         model = AutoModelForSeq2SeqLM.from_pretrained(Model_ENSK)
         return model
 
     def load_tokenizer(self):
-        """Load Tokenizer"""
+        """
+        Load Tokenizer
+        """
         tokenizer = AutoTokenizer.from_pretrained(
             Model_ENSK,
             from_tf=True,
@@ -32,7 +36,9 @@ class Model:
         return tokenizer
 
     def get_pipeline(self):
-        """Return translator pipeline"""
+        """
+        Return translator pipeline
+        """
         model_tt0it = self.load_model()
         tokenizer_tt0it = self.load_tokenizer()
         TToIT = pipeline(

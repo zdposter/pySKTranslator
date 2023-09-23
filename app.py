@@ -21,7 +21,9 @@ favicon_path = 'favicon.ico'
 
 @app.on_event('startup')
 async def startup_event():
-    print('Loading models...')
+    """
+    Initialize translation model.
+    """
     start = datetime.datetime.now()
     global TToIT
     model = Model()
@@ -32,11 +34,17 @@ async def startup_event():
 
 @app.get('/favicon.ico', include_in_schema=False)
 async def favicon():
+    """
+    Show favicon
+    """
     return FileResponse(favicon_path)
 
 
 @app.get('/', status_code=200)
 async def home(req: Request, result: str = ''):
+    """
+    Show the main page.
+    """
     return TEMPLATES.TemplateResponse(
         'base.html', context={'request': req, 'result': result}
     )
@@ -44,6 +52,9 @@ async def home(req: Request, result: str = ''):
 
 @app.post('/translate')
 def translate(req: Request, eng_text: str = Form(None)):
+    """
+    Translate retrieved text to Slovak.
+    """
     url = app.url_path_for('home')
     if not eng_text:
         return TEMPLATES.TemplateResponse(
