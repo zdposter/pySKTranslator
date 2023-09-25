@@ -35,7 +35,7 @@ async def startup_event():
 @app.get('/favicon.ico', include_in_schema=False)
 async def favicon():
     """
-    Show favicon
+    Show favicon.
     """
     return FileResponse(favicon_path)
 
@@ -56,6 +56,7 @@ def translate(req: Request, eng_text: str = Form(None)):
     Translate retrieved text to Slovak.
     """
     url = app.url_path_for('home')
+    start = datetime.datetime.now()
     if not eng_text:
         return TEMPLATES.TemplateResponse(
             'base.html',
@@ -72,9 +73,10 @@ def translate(req: Request, eng_text: str = Form(None)):
     for item in texts:
         line = TToIT(item.page_content)[0]['translation_text']
         final_text += line + '\n'
+    elapsed = datetime.datetime.now() - start
     return TEMPLATES.TemplateResponse(
         'base.html',
-        context={'request': req, 'result': final_text, 'eng_text': eng_text},
+        context={'request': req, 'result': final_text, 'eng_text': eng_text, 'speed': round(elapsed.total_seconds(),3) },
     )
 
 
