@@ -74,13 +74,14 @@
                     {{ result }}
                 </div>
             </div>
-
-            {% endif %}
-
-            {% if warning %}
-            <div class="ui warning message">{{warning}}</div>
-            {% endif %}
+            <div class="ui segment right floated olive mini"><i>{{speed}} s</i></div>
         </div>
+        {% endif %}
+
+    {% if warning %}
+        <div class="ui warning message">{{warning}}</div>
+    {% endif %}
+
 </body>
 
 </html>
